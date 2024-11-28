@@ -1,70 +1,73 @@
 {% extends "base2.html" %}
 
 {% block content %}
-<section class="flex items-center justify-center py-12 bg-gray-50 min-h-screen">
-    <div class="w-full max-w-md bg-white shadow-md rounded-lg p-6">
-        <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Register</h2>
-        
+
+<section class="flex items-center justify-center py-12 min-h-screen relative">
+    
+
+    <div class="w-full max-w-md glass-card p-8 shadow-lg rounded-lg">
+        <h2 class="text-3xl font-bold text-center text-gray-100 mb-8">Register</h2>
+
         <!-- Success/Error Messages -->
         <div x-data="{ message: '', type: '' }">
             {% if messages %}
                 {% for message in messages %}
-                <div :class="type === 'error' ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'" 
-                     class="p-4 rounded-lg mb-4 animate-fade" x-text="'{{ message }}'"></div>
+                    <div :class="type === 'error' ? 'bg-red-900 text-red-300' : 'bg-green-900 text-green-300'" 
+                         class="p-4 rounded-lg mb-4 animate-fade" x-text="'{{ message }}'"></div>
                 {% endfor %}
             {% endif %}
         </div>
-        
-        <form action="{% url 'register_user' %}" method="POST" class="space-y-4">
+
+        <!-- Form Section -->
+        <form action="{% url 'register_user' %}" method="POST" class="space-y-6">
             {% csrf_token %}
-            
             <!-- Username Field -->
             <div>
-                <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                <label for="username" class="block text-sm font-medium text-gray-300">Username</label>
                 <input type="text" name="username" id="username" required 
-                       class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow">
+                       class="mt-1 w-full px-4 py-3 border border-gray-700 bg-gray-800 text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-shadow">
             </div>
 
             <!-- Email Field -->
             <div>
-                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <label for="email" class="block text-sm font-medium text-gray-300">Email</label>
                 <input type="email" name="email" id="email" required 
-                       class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow">
+                       class="mt-1 w-full px-4 py-3 border border-gray-700 bg-gray-800 text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-shadow">
             </div>
 
-            <!-- First Name -->
+            <!-- First Name Field -->
             <div>
-                <label for="first_name" class="block text-sm font-medium text-gray-700">First Name</label>
+                <label for="first_name" class="block text-sm font-medium text-gray-300">First Name</label>
                 <input type="text" name="first_name" id="first_name" required 
-                       class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow">
+                       class="mt-1 w-full px-4 py-3 border border-gray-700 bg-gray-800 text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-shadow">
             </div>
 
-            <!-- Last Name -->
+            <!-- Last Name Field -->
             <div>
-                <label for="last_name" class="block text-sm font-medium text-gray-700">Last Name</label>
+                <label for="last_name" class="block text-sm font-medium text-gray-300">Last Name</label>
                 <input type="text" name="last_name" id="last_name" required 
-                       class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow">
+                       class="mt-1 w-full px-4 py-3 border border-gray-700 bg-gray-800 text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-shadow">
             </div>
 
             <!-- Password Field -->
             <div>
-                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <label for="password" class="block text-sm font-medium text-gray-300">Password</label>
                 <input type="password" name="password" id="password" required 
-                       class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow">
+                       class="mt-1 w-full px-4 py-3 border border-gray-700 bg-gray-800 text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-shadow">
             </div>
 
-            <!-- Confirm Password -->
+            <!-- Confirm Password Field -->
             <div>
-                <label for="password_confirm" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                <label for="password_confirm" class="block text-sm font-medium text-gray-300">Confirm Password</label>
                 <input type="password" name="password_confirm" id="password_confirm" required 
-                       class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow">
+                       class="mt-1 w-full px-4 py-3 border border-gray-700 bg-gray-800 text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-shadow">
             </div>
 
-            <!-- Role -->
+            <!-- Role Field -->
             <div>
-                <label for="role" class="block text-sm font-medium text-gray-700">Role</label>
+                <label for="role" class="block text-sm font-medium text-gray-300">Role</label>
                 <select name="role" id="role" required 
-                        class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        class="mt-1 w-full px-4 py-3 border border-gray-700 bg-gray-800 text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-900">
                     <option value="user">User</option>
                     <option value="driver">Driver</option>
                 </select>
@@ -72,14 +75,14 @@
 
             <!-- Submit Button -->
             <button type="submit" 
-                    class="w-full py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+                 class="w-full py-3 bg-yellow-600 text-gray-100 font-semibold rounded-lg shadow-md hover:bg-yellow-800 hover:shadow-lg focus:ring-2 focus:ring-yellow-500 transition-all duration-300">
                 Register
             </button>
 
             <!-- Login Link -->
-            <div class="text-sm text-center text-gray-600 mt-4">
+            <div class="text-sm text-center text-gray-400 mt-4">
                 Already have an account? 
-                <a href="{% url 'login_user' %}" class="text-blue-600 hover:text-blue-700">Login here</a>
+                <a href="{% url 'login_user' %}" class="text-orange-400 hover:text-orange-500 transition duration-300">Login here</a>
             </div>
         </form>
     </div>

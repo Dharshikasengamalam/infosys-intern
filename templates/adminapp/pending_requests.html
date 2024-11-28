@@ -3,72 +3,76 @@
 {% block title %}Pending Waste Collection Requests{% endblock %}
 
 {% block content %}
-<div class="container mx-auto mt-8 p-4 bg-gray-50 rounded-lg shadow-md">
-    <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Pending Waste Collection Requests</h2>
+<div class="container mx-auto mt-8 p-6 bg-gray-600 bg-opacity-60 backdrop-blur-md rounded-lg shadow-lg">
+    <h2 class="text-2xl lg:text-3xl font-extrabold text-center text-gray-100 mb-6">Pending Waste Collection Requests</h2>
 
     <!-- Section for Unassigned Requests -->
-    <h3 class="text-xl font-semibold mb-4 text-gray-700">Unassigned Requests</h3>
+    <h3 class="text-xl lg:text-2xl font-semibold mb-4 text-gray-100">Unassigned Requests</h3>
     {% if unassigned_requests %}
-        <table class="min-w-full bg-white shadow rounded-lg mb-8">
-            <thead class="bg-gray-100">
-                <tr>
-                    <th class="py-2 px-4 text-left">User</th>
-                    <th class="py-2 px-4 text-left">Waste Type</th>
-                    <th class="py-2 px-4 text-left">Quantity (kg)</th>
-                    <th class="py-2 px-4 text-left">Requested On</th>
-                    <th class="py-2 px-4 text-left">Location</th>
-                    <th class="py-2 px-4 text-left">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for request in unassigned_requests %}
-                    <tr class="border-t hover:bg-gray-200">
-                        <td class="py-2 px-4">{{ request.user.username }}</td>
-                        <td class="py-2 px-4">{{ request.waste_type }}</td>
-                        <td class="py-2 px-4">{{ request.quantity }}</td>
-                        <td class="py-2 px-4">{{ request.requested_on }}</td>
-                        <td class="py-2 px-4">{{ request.collection_location }}</td>
-                        <td class="py-2 px-4">
-                            <a href="{% url 'adminapp:assign_driver' request.id %}" class="text-blue-600 hover:underline">Assign Driver</a> |
-                            <a href="{% url 'adminapp:reject_request' request.id %}" class="text-red-600 hover:text-red-800">Reject</a>
-                        </td>
+        <div class="overflow-x-auto bg-white shadow-lg rounded-lg mb-8">
+            <table class="min-w-full">
+                <thead class="bg-gray-700 text-gray-100">
+                    <tr>
+                        <th class="py-3 px-6 text-left">User</th>
+                        <th class="py-3 px-6 text-left">Waste Type</th>
+                        <th class="py-3 px-6 text-left">Quantity (kg)</th>
+                        <th class="py-3 px-6 text-left">Requested On</th>
+                        <th class="py-3 px-6 text-left">Location</th>
+                        <th class="py-3 px-6 text-left">Actions</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody class="text-gray-700">
+                    {% for request in unassigned_requests %}
+                        <tr class="border-t hover:bg-gray-200">
+                            <td class="py-3 px-6">{{ request.user.username }}</td>
+                            <td class="py-3 px-6">{{ request.waste_type }}</td>
+                            <td class="py-3 px-6">{{ request.quantity }}</td>
+                            <td class="py-3 px-6">{{ request.requested_on }}</td>
+                            <td class="py-3 px-6">{{ request.collection_location }}</td>
+                            <td class="py-3 px-6">
+                                <a href="{% url 'adminapp:assign_driver' request.id %}" class="text-orange-600 hover:underline">Assign Driver</a> |
+                                <a href="{% url 'adminapp:reject_request' request.id %}" class="text-red-600 hover:text-red-800">Reject</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     {% else %}
-        <p class="text-gray-600 mt-4 text-center">No unassigned requests found.</p>
+        <p class="text-gray-400 mt-4 text-center">No unassigned requests found.</p>
     {% endif %}
 
     <!-- Section for Assigned Requests -->
-    <h3 class="text-xl font-semibold mb-4 text-gray-700">Assigned Requests</h3>
+    <h3 class="text-xl lg:text-2xl font-semibold mb-4 text-gray-100">Assigned Requests</h3>
     {% if assigned_requests %}
-        <table class="min-w-full bg-white shadow rounded-lg">
-            <thead class="bg-gray-100">
-                <tr>
-                    <th class="py-2 px-4 text-left">User</th>
-                    <th class="py-2 px-4 text-left">Waste Type</th>
-                    <th class="py-2 px-4 text-left">Quantity (kg)</th>
-                    <th class="py-2 px-4 text-left">Requested On</th>
-                    <th class="py-2 px-4 text-left">Location</th>
-                    <th class="py-2 px-4 text-left">Assigned Driver</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for request in assigned_requests %}
-                    <tr class="border-t hover:bg-gray-200">
-                        <td class="py-2 px-4">{{ request.user.username }}</td>
-                        <td class="py-2 px-4">{{ request.waste_type }}</td>
-                        <td class="py-2 px-4">{{ request.quantity }}</td>
-                        <td class="py-2 px-4">{{ request.requested_on }}</td>
-                        <td class="py-2 px-4">{{ request.collection_location }}</td>
-                        <td class="py-2 px-4">{{ request.driver.username }}</td>
+        <div class="overflow-x-auto bg-white shadow-lg rounded-lg">
+            <table class="min-w-full">
+                <thead class="bg-gray-700 text-gray-100">
+                    <tr>
+                        <th class="py-3 px-6 text-left">User</th>
+                        <th class="py-3 px-6 text-left">Waste Type</th>
+                        <th class="py-3 px-6 text-left">Quantity (kg)</th>
+                        <th class="py-3 px-6 text-left">Requested On</th>
+                        <th class="py-3 px-6 text-left">Location</th>
+                        <th class="py-3 px-6 text-left">Assigned Driver</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody class="text-gray-700">
+                    {% for request in assigned_requests %}
+                        <tr class="border-t hover:bg-gray-200">
+                            <td class="py-3 px-6">{{ request.user.username }}</td>
+                            <td class="py-3 px-6">{{ request.waste_type }}</td>
+                            <td class="py-3 px-6">{{ request.quantity }}</td>
+                            <td class="py-3 px-6">{{ request.requested_on }}</td>
+                            <td class="py-3 px-6">{{ request.collection_location }}</td>
+                            <td class="py-3 px-6">{{ request.driver.username }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     {% else %}
-        <p class="text-gray-600 mt-4 text-center">No assigned requests found.</p>
+        <p class="text-gray-400 mt-4 text-center">No assigned requests found.</p>
     {% endif %}
 </div>
 {% endblock %}

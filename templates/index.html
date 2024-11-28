@@ -1,38 +1,92 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="py-12 bg-gray-50">
-    <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">About Our System</h2>
-        <p class="text-center text-gray-600 mb-12">
-            Our waste collection system is designed to help you efficiently manage your waste, reduce your environmental impact, and promote sustainability. 
-            We offer a range of features to streamline your waste collection processes, including:
-        </p>
+<style>
+    .info-section {
+            margin-top: 50px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
 
+        .info-section h2 {
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .info-section p {
+            text-align: justify;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+
+        /* Image styling */
+        .info-section img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .circle1, .circle2 {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.3;
+            filter: blur(100px);
+        }
+
+        .circle1 {
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 165, 0, 1); /* Light orange */
+            top: 10%;
+            left: 15%;
+        }
+
+        .circle2 {
+            width: 400px;
+            height: 400px;
+            background: rgba(135, 206, 250, 1); /* Light sky blue */
+            bottom: 10%;
+            right: 15%;
+        }
+</style>
+
+<section>
+    <!-- Background Circles for Aesthetic Touch -->
+    <div class="circle1"></div>
+    <div class="circle2"></div>
+
+    <div class="container info-section">
+        <h2 style="font-size: 200%; padding-left: 30px;">About Waste Disposal</h2>
+        <p style="padding-left: 30px; padding-right: 30px; line-height: 2;">Waste disposal is an essential part of maintaining a clean and sustainable environment. Proper waste management ensures that harmful materials do not contaminate our surroundings, water bodies, or air. Effective waste disposal methods reduce pollution, protect public health, and contribute to environmental conservation. Sorting waste into categories such as recyclable, compostable, and non-recyclable helps streamline the disposal process and maximize recycling efforts. Everyone has a role to play in waste disposal, and we encourage responsible waste management practices.</p>
+        <div style="display: flex; justify-content:center; gap: 30px;">
+          <img src="https://dailystar.com.au/wp-content/uploads/2019/12/Solid-Waste-Disposal1-768x435.jpg" alt="Waste Disposal Image" style="width: 500px; height: auto;">
+          <img src="https://png.pngtree.com/png-vector/20221109/ourmid/pngtree-word-cloud---waste-management-waste-disposal-recycling-vector-png-image_23176162.png" alt="Waste Disposal Image" style="width: 500px; height: auto;">
+        </div>       
+      </div>
         <!-- Card Section -->
-        <div class="flex flex-wrap justify-center gap-8">
-            <!-- Card 1 -->
-            <div class="w-full md:w-1/3 bg-white shadow-lg rounded-lg p-6">
-                <h5 class="text-xl font-semibold text-gray-800 mb-4">Schedule Waste Pickups</h5>
-                <p class="text-gray-600">Easily schedule waste pickups for your convenience.</p>
+        <div class="container info-section">
+            <h2 style="font-size: 200%; padding-left: 30px">Steps to Segregate and Dispose Waste</h2>
+            <ul style="padding-left: 30px;">
+              <li>  -> Separate organic waste (such as food scraps) from inorganic waste. </li><br>
+              <li>  -> Organic waste can be composted to enrich soil and reduce landfill. </li><br>
+              <li>  -> Sort recyclable materials (plastics, glass, paper) into specific bins to facilitate recycling and reduce pollution.</li><br>
+              <li>  -> Keep hazardous waste (such as batteries and electronic waste) in separate containers for safe disposal at designated facilities.</li><br>
+              <li>  -> Encourage community participation in waste segregation to maximize environmental benefits and foster a cleaner habitat.</li><br>
+            </ul>
+            <div style="display: flex; justify-content:center; gap: 10px;">
+              
+              <img src="https://www.tapioplast.com/wp-content/uploads/2021/08/waste-separation.png" alt="Waste Disposal Image" style="width: 800px; height: auto;">
             </div>
+          </div>
 
-            <!-- Card 2 -->
-            <div class="w-full md:w-1/3 bg-white shadow-lg rounded-lg p-6">
-                <h5 class="text-xl font-semibold text-gray-800 mb-4">Track Waste Collection History</h5>
-                <p class="text-gray-600">Keep track of your waste collection history for better management.</p>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="w-full md:w-1/3 bg-white shadow-lg rounded-lg p-6">
-                <h5 class="text-xl font-semibold text-gray-800 mb-4">Manage Multiple Collection Points</h5>
-                <p class="text-gray-600">Manage waste collection for multiple locations with ease.</p>
-            </div>
-        </div>
-
-        <p class="text-center text-gray-600 mt-12">
+        <p class="text-center text-gray-400 mt-12">
             Join us today and make a positive impact on the environment!
         </p>
     </div>
 </section>
 {% endblock %}
+

@@ -13,27 +13,30 @@
         }
     </script>
 </head>
-<body class="bg-gray-100">
-    <nav class="bg-blue-500 text-white">
-        <div class="container mx-auto flex items-center justify-between p-4">
-            <a href="#" class="text-lg font-bold">Waste Management System</a>
+<body class="bg-gray-900 text-gray-100 font-poppins">
+    <nav class="bg-gray-800 text-gray-100 shadow-md backdrop-blur-lg">
+        <div class="container mx-auto flex items-center justify-between p-6">
+            <a href="#" class="text-2xl font-extrabold text-orange-500">Waste Manager</a>
             <button class="lg:hidden block" onclick="toggleMenu()">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
             </button>
-            <div id="mobile-menu" class="hidden lg:flex space-x-4">
+            <div id="mobile-menu" class="hidden lg:flex space-x-6">
                 {% if user.is_authenticated %}
                     <span>Welcome, {{ user.username }}!</span>
-                    <a href="{% url 'logout_user' %}" class="underline">Logout</a>
+                    <a href="{% url 'logout_user' %}" class="underline text-orange-400">Logout</a>
                 {% else %}
-                    <a href="{% url 'login_user' %}" class="underline">Login</a>
+                    <a href="{% url 'login_user' %}" class="underline text-orange-400">Login</a>
                 {% endif %}
             </div>
         </div>
     </nav>
-    <main class="py-8">
-        {% block content %}{% endblock %}
+    <main class="py-12 bg-gray-900">
+        <div class="container mx-auto px-4">
+            {% block content %}
+            {% endblock %}
+        </div>
     </main>
 </body>
 </html>

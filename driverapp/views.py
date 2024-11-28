@@ -1,10 +1,14 @@
+import datetime
 from django.shortcuts import render, redirect
 from django.contrib import messages
+
+import driverapp
 from .forms import DriverProfileForm
 from .models import DriverProfile
 from account_app.decorators import role_required  # Import the existing role-based decorator
 from wasteapp.models import WasteRequest
 from django.shortcuts import get_object_or_404
+from datetime import datetime, timedelta
 
 
 @role_required(allowed_roles=['driver'])  # Allow only users with the 'driver' role
@@ -59,3 +63,56 @@ def view_driver_details(request, driver_id):
     return render(request, 'driverapp/driver_details.html', {
         'driver_profile': driver_profile
     })
+
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from django.shortcuts import redirect, get_object_or_404
+from django.contrib import messages
+from django.contrib.auth.models import User
+
+
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from django.shortcuts import redirect, get_object_or_404
+from django.contrib import messages
+from django.contrib.auth.models import User
+import socket
+
+def send_email(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    
+    # Email setup
+    sender_email = 'wastemanager2024@gmail.com'
+    receiver_email = request.user.email
+    password = 'welo lyqr jwff navg'  # Replace with an app password for better security
+
+    # Email content
+    current = str(datetime.now())
+    subject = 'WASTE COLLECTION CONFIRMATION'
+    current = datetime.now()  # Get the current date and time
+    body = 'Greetings, dear {name}! Your waste has been collected at {current_time}. Thank you for using our software!'.format(
+        name=request.user.first_name,
+        current_time=current,
+    )
+
+    msg = MIMEMultipart()
+    msg['From'] = sender_email
+    msg['To'] = receiver_email
+    msg['Subject'] = subject
+    msg.attach(MIMEText(body, 'plain'))
+
+    try:
+        # Connect to the server and send email
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(sender_email, password)
+        server.send_message(msg)
+        messages.success(request, "Mail Sent Successfully to " + receiver_email )
+    except (smtplib.SMTPException, socket.error) as e:
+        messages.error(request, f"Error sending email: {e}")
+    finally:
+        server.quit()
+
+    return redirect('driverapp:dashboard')  # Redirect back to the dashboard

@@ -144,6 +144,13 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # # Email server configuration...
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # or your SMTP host
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'wastemanager2024@gmail.com'
+EMAIL_HOST_PASSWORD = 'welo lyqr jwff navg'
+
 
 
 # settings.py (for testing)
